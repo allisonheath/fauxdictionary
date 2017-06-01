@@ -26,8 +26,6 @@ def load_yaml_schema(path):
         return yaml.load(f)
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
 DATA_DIR = os.path.join(CUR_DIR, 'examples')
-project1 = load_yaml_schema(os.path.join(CUR_DIR, 'examples/projects/project1.yaml'))
-projects = {'project1': project1}
 
 def merge_schemas(a, b, path=None):
     """Recursively zip schemas together
@@ -51,27 +49,12 @@ def merge_schemas(a, b, path=None):
     return a
 
 
-def get_project_specific_schema(projects, project, schema, entity_type):
-    """Look up the core schema for its type and override it with any
-    project level overrides
-
-    """
-    root = copy.deepcopy(schema)
-    project_overrides = projects.get(project)
-    if project_overrides:
-        overrides = project_overrides.get(entity_type)
-        if overrides:
-            merge_schemas(root, overrides, [entity_type])
-    return root
-
-
 def validate_entity(entity, schemata, project=None, name=''):
     """Validate an entity by looking up the core schema for its type and
     overriding it with any project level overrides
 
     """
-    local_schema = get_project_specific_schema(
-        projects, project, schemata[entity['type']], entity['type'])
+    local_schema = schemata[entity['type']]
     result = validate(entity, local_schema)
     return result
 

@@ -6,14 +6,10 @@ title: "GDC JSON schema extension"
 allOf:
   - $ref: "http://json-schema.org/draft-04/schema#"
 
-#GDC extensions
+#extensions
 required:
-  - category #potentially used in submission system, if not may not be needed
-  - program
-  - project
   - uniqueKeys #for validator to check uniqueness
   - links #to specify to the validator what properties are links and their targets
-  - validators #specify to the validator additional functions to run on the values
   - systemProperties #non-user facing values required by backend
   #Require core JSON schema fields here if desired, requiring id
   - id
@@ -85,23 +81,8 @@ definitions:
           - many_to_many
 
 properties:
-  category:
-    type: string
-    enum:
-      - administrative
-      - analysis
-      - biospecimen
-      - clinical
-      - data
-      - data_bundle
-      - data_file
-      - index_file
-      - metadata_file
-      - notation
-      - qc_bundle
-      - TBD
 
-  unique_keys:
+  uniqueKeys:
     type: array
     items:
       type: array
@@ -118,7 +99,7 @@ properties:
     items:
       $ref: "#/definitions/validator_def"
 
-  system_properties:
+  systemProperties:
     type: array
 
   properties:
