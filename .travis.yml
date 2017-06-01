@@ -3,5 +3,6 @@ python:
   - "3.6"
 before_script:
     - yes | python setup.py install
+    - pip install -e .
     - pip freeze
-script: "python -m pytest"
+script: "pytest"
