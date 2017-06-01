@@ -1,0 +1,28 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "subject"
+title: Subject
+type: object
+namespace: http://d3b.center
+description: >
+  The subject of study.
+
+systemProperties:
+  - id
+  - created_datetime
+  - updated_datetime
+  - visibility
+
+links: []
+
+required:
+  - alias
+  - alias_namespace
+
+uniqueKeys:
+  - [id]
+  - [alias_namespace, alias]
+
+# Case properties
+properties:
+  $ref: "_definitions.yaml#/ubiquitous_properties"

@@ -1,0 +1,45 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "clinical_event"
+title: Clinical Event
+type: object
+namespace: http://d3b.center
+description: >
+  The subject of study.
+
+systemProperties:
+  - id
+  - created_datetime
+  - updated_datetime
+  - visibility
+
+links:
+  - name: subjects
+    backref: clinical_events
+    label: member_of
+    target_type: subject
+    multiplicity: one_to_one
+    required: false
+
+required:
+  - alias
+  - alias_namespace
+  - is_time_zero
+  - days_to_time_zero
+
+uniqueKeys:
+  - [id]
+  - [alias_namespace, alias]
+
+# Case properties
+properties:
+  $ref: "_definitions.yaml#/ubiquitous_properties"
+  is_time_zero:
+    type: boolean
+  days_to_time_zero:
+    oneOf:
+    - type: string
+      pattern: "^[0-9]+$"
+    - $ref: "_definitions.yaml#/missing_fields"
+  subjects:
+    $ref: "_definitions.yaml#/to_one"
