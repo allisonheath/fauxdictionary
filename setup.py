@@ -20,8 +20,8 @@ setup(
     version=get_version(),
     packages=find_packages(),
     install_requires=[
-        'PyYAML==3.11',
-        'jsonschema==2.5.1',
+        'PyYAML==3.12',
+        'jsonschema==2.6.0',
     ],
     package_data={
         "gdcdictionary": [
