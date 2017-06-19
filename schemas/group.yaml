@@ -1,0 +1,56 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "group"
+title: Group
+type: object
+namespace: http://d3b.center
+description: >
+  A group of people.
+
+systemProperties:
+  - id
+  - created_datetime
+  - updated_datetime
+  - visibility
+
+links:
+  - label: part_of
+    target_type: group
+    multiplicity: many_to_one
+    required: false
+  - label: led_by
+    target_type: person
+    multiplicity: many_to_many
+    required: true
+  - label: contacts
+    target_type: person
+    multiplicity: many_to_many
+    required: true
+
+required:
+  - alias
+  - alias_namespace
+
+uniqueKeys:
+  - [id]
+  - [alias_namespace, alias]
+
+# Case properties
+properties:
+  $ref_ubiq: "_definitions.yaml#/ubiquitous_properties"
+  name:
+    type: string
+  city:
+    type: string
+  state:
+    type: string
+  country:
+    type: string
+  read_groups:
+    $ref: "_definitions.yaml#/to_many"
+  part_of:
+    $ref: "_definitions.yaml#/to_many"
+  led_by:
+    $ref: "_definitions.yaml#/to_many"
+  contacts:
+    $ref: "_definitions.yaml#/to_many"

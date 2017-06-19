@@ -3,7 +3,7 @@
     "alias_namespace": "cbttc.org",
     "alias": "7316-458",
     "is_time_zero": false,
-    "days_to_time_zero": "20",
+    "days_to_time_zero": 20,
     "subject": {
         "alias": "C97785"
     }

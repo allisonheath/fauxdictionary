@@ -14,27 +14,19 @@ required:
   #Require core JSON schema fields here if desired, requiring id
   - id
 
-
 definitions:
-
   link:
     type: object
     additionalProperties: false
     required:
-      - name
       - target_type
-      - backref
       - label
       - multiplicity
       - required
     properties:
-      name:
+      label:
         type: string
       target_type:
-        type: string
-      backref:
-        type: string
-      label:
         type: string
       multiplicity:
         type: string

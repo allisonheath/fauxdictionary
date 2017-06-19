@@ -1,11 +1,11 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "subject"
-title: Subject
+id: "person"
+title: Person
 type: object
 namespace: http://d3b.center
 description: >
-  A deidentified research subject.
+  A person with an identity.
 
 systemProperties:
   - id
@@ -14,13 +14,9 @@ systemProperties:
   - visibility
 
 links:
-  - label: genetic_mother_of
-    target_type: subject
-    multiplicity: many_to_one
-    required: false
-  - label: genetic_father_of
-    target_type: subject
-    multiplicity: many_to_one
+  - label: belongs_to
+    target_type: group
+    multiplicity: many_to_many
     required: false
 
 required:
@@ -34,7 +30,13 @@ uniqueKeys:
 # Case properties
 properties:
   $ref_ubiq: "_definitions.yaml#/ubiquitous_properties"
-  genetic_mother_of:
-    $ref: "_definitions.yaml#/to_one"
-  genetic_father_of:
+  name:
+    type: string
+  title:
+    type: string
+  credentials:
+    type: string
+  orc_id:
+    $ref: "_definitions.yaml#/orc_id"
+  belongs_to:
     $ref: "_definitions.yaml#/to_one"

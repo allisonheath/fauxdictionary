@@ -14,9 +14,7 @@ systemProperties:
   - visibility
 
 links:
-  - name: subjects
-    backref: clinical_events
-    label: member_of
+  - label: subject
     target_type: subject
     multiplicity: one_to_one
     required: false
@@ -33,13 +31,12 @@ uniqueKeys:
 
 # Case properties
 properties:
-  $ref: "_definitions.yaml#/ubiquitous_properties"
+  $ref_ubiq: "_definitions.yaml#/ubiquitous_properties"
   is_time_zero:
     type: boolean
   days_to_time_zero:
     oneOf:
-    - type: string
-      pattern: "^[0-9]+$"
+    - type: integer
     - $ref: "_definitions.yaml#/missing_fields"
-  subjects:
+  subject:
     $ref: "_definitions.yaml#/to_one"

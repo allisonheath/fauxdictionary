@@ -1,0 +1,18 @@
+{
+    "type": "sample",
+    "alias": "323641",
+    "alias_namespace": "cbttc.org",
+    "composition" : "Solid Tissue",
+    "preservation_method" : "Flash Frozen",
+    "tissue_type" : "Tumor",
+    "procurement_site": "Pineal gland",
+    "volume_remaining" : 8,
+    "volume_units" : "mg",
+    "concentration" : "Not Applicable",
+    "concentration_units" : "Not Applicable",
+    "availability" : "On Site",
+    "taken_during" : {
+        "alias": "7316-464"
+    }
+
+}

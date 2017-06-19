@@ -1,0 +1,61 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "sample"
+title: Sample
+type: object
+namespace: http://d3b.center
+description: >
+  A sample taken from a subject.
+
+systemProperties:
+  - id
+  - created_datetime
+  - updated_datetime
+  - visibility
+
+links:
+  - label: derived_from
+    target_type: sample
+    multiplicity: many_to_many
+    required: false
+  - label: derived_from
+    target_type: aliquot
+    multiplicity: many_to_many
+    required: false
+
+required:
+  - alias
+  - alias_namespace
+  - volume_remaining
+  - volume_received
+  - volume_units
+  - concentration
+  - concentration_units
+  - availability
+  - composition
+  - a260_a280_ratio
+  - tissue_type
+
+uniqueKeys:
+  - [id]
+  - [alias_namespace, alias]
+
+properties:
+  $ref_ubiq: "_definitions.yaml#/ubiquitous_properties"
+  $ref_bio: "_definitions.yaml#/biospecimen_properties"
+  composition:
+    oneOf:
+      - enum:
+          - DNA
+          - RNA
+      - $ref: "_definitions.yaml#/missing_fields"
+  a260_a280_ratio:
+    oneOf:
+      - type: number
+      - $ref: "_definitions.yaml#/missing_fields"
+  rna_integrity_number:
+    oneOf:
+      - type: number
+      - $ref: "_definitions.yaml#/missing_fields"
+  derived_from:
+    $ref: "_definitions.yaml#/to_many"
