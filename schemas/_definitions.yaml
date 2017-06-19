@@ -1,10 +1,14 @@
-id: _core_definitions
+id: _definitions
 
 UUID:
     term:
         $ref: "_terms.yaml#/UUID"
     type: string
     pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+
+orc_id:
+  type: string
+  pattern: "^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$"
 
 foreign_key:
     type: object
@@ -40,7 +44,7 @@ datetime:
   oneOf:
     - type: string
       format: date-time
-    - type: 'null'
+    - type: "null"
   term:
     $ref: "_terms.yaml#/datetime"
 
@@ -49,10 +53,10 @@ visibility:
         $ref: "_terms.yaml#/visibility"
     default: visible
     enum: #This list covers all future data 1/15/16
-      - visibile
-      - consealed
-      - redacted
-      - deleted
+      - Visibile
+      - Consealed
+      - Redacted
+      - Deleted
 
 ubiquitous_properties:
   type:
@@ -76,6 +80,40 @@ ubiquitous_properties:
 
 missing_fields:
   enum:
-    - pending
-    - not reported
-    - not applicable
+    - Pending
+    - Not Reported
+    - Not Applicable
+
+biospecimen_properties:
+  volume_remaining:
+    oneOf:
+      - type: number
+      - $ref: "_definitions.yaml#/missing_fields"
+  volume_received:
+    oneOf:
+      - type: number
+      - $ref: "_definitions.yaml#/missing_fields"
+  volume_units:
+    oneOf:
+      - enum:
+          - ul
+          - ml
+          - mg
+      - $ref: "_definitions.yaml#/missing_fields"
+  concentration:
+    oneOf:
+      - type: number
+      - $ref: "_definitions.yaml#/missing_fields"
+  concentration_units:
+    oneOf:
+      - enum:
+          - ng/ul
+      - $ref: "_definitions.yaml#/missing_fields"
+  availability:
+    oneOf:
+      - enum:
+        - On Site
+        - Shipped
+        - Disposed
+        - On Hold
+      - $ref: "_definitions.yaml#/missing_fields"

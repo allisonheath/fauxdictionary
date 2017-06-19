@@ -1,0 +1,409 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "sample"
+title: Sample
+type: object
+namespace: http://d3b.center
+description: >
+  A sample taken from a subject.
+
+systemProperties:
+  - id
+  - created_datetime
+  - updated_datetime
+  - visibility
+
+links:
+  - label: taken_during
+    target_type: clinical_event
+    multiplicity: many_to_one
+    required: false
+  - label: derived_from
+    target_type: sample
+    multiplicity: many_to_many
+    required: false
+
+required:
+  - alias
+  - alias_namespace
+  - volume_remaining
+  - volume_units
+  - concentration
+  - concentration_units
+  - availability
+  - composition
+  - preservation_method
+  - tissue_type
+  - procurement_site
+
+uniqueKeys:
+  - [id]
+  - [alias_namespace, alias]
+
+properties:
+  $ref_ubiq: "_definitions.yaml#/ubiquitous_properties"
+  $ref_bio: "_definitions.yaml#/biospecimen_properties"
+  composition:
+    oneOf:
+      - enum:
+          - Solid Tissue
+          - Plasma
+          - Saliva
+          - Peripheral Blood Mononuclear Cells
+          - Blood
+      - $ref: "_definitions.yaml#/missing_fields"
+  preservation_method:
+    oneOf:
+      - enum:
+          - Flash Frozen
+          - Freezing Media
+          - Formalin Fixed Paraffin Embedded
+          - EDTA
+          - OCT embedded
+      - $ref: "_definitions.yaml#/missing_fields"
+  tissue_type:
+    oneOf:
+      - enum:
+          - Tumor
+          - Normal
+          - Abnormal
+          - Peritumor
+      - $ref: "_definitions.yaml#/missing_fields"
+  procurement_site:
+    oneOf:
+      - enum:
+          - External upper lip
+          - External lower lip
+          - External lip, NOS
+          - Mucosa of upper lip
+          - Mucosa of lower lip
+          - Mucosa of lip, NOS
+          - Commissure of lip
+          - Overlapping lesion of lip
+          - Lip, NOS
+          - Base of tongue, NOS
+          - Dorsal surface of tongue, NOS
+          - Border of tongue
+          - Ventral surface of tongue, NOS
+          - Anterior 2/3 of tongue, NOS
+          - Lingual tonsil
+          - Overlapping lesion of tongue
+          - Tongue, NOS
+          - Upper Gum
+          - Lower gum
+          - Gum, NOS
+          - Anterior floor of mouth
+          - Lateral floor of mouth
+          - Overlapping lesion of floor of mouth
+          - Floor of mouth, NOS
+          - Hard palate
+          - Soft palate, NOS
+          - Uvula
+          - Overlapping lesion of palate
+          - Palate, NOS
+          - Cheek mucosa
+          - Vestibule of mouth
+          - Retromolar area
+          - Overlapping lesion of other and unspecified parts of mouth
+          - Mouth, NOS
+          - Parotid gland
+          - Submandibular gland
+          - Sublingual gland
+          - Overlapping lesion of major salivary glands
+          - Major salivary gland, NOS
+          - Tonsillar fossa
+          - Tonsillar pillar
+          - Overlapping lesion of tonsil
+          - Tonsil, NOS
+          - Vallecula
+          - Anterior surface of epiglottis
+          - Lateral wall of oropharynx
+          - Posterior wall of oropharynx
+          - Branchial cleft
+          - Overlapping lesions of oropharynx
+          - Oropharynx, NOS
+          - Superior wall of nasopharynx
+          - Posterior wall of nasopharynx
+          - Lateral wall of nasopharynx
+          - Anterior wall of nasopharynx
+          - Overlapping lesion of nasopharynx
+          - Nasopharynx, NOS
+          - Pyriform sinus
+          - Postcricoid region
+          - Hypopharyngeal aspect of aryepiglottic fold
+          - Posterior wall of hypopharynx
+          - Overlapping lesion of hypopharynx
+          - Hypopharynx, NOS
+          - Pharynx, NOS
+          - Waldeyer ring
+          - Overlapping lesion of lip, oral cavity and pharynx
+          - Cervical esophagus
+          - Thoracic esophagus
+          - Abdominal esophagus
+          - Upper third of esophagus
+          - Middle third of esophagus
+          - Lower third of esophagus
+          - Overlapping lesion of esophagus
+          - Esophagus, NOS
+          - Cardia, NOS
+          - Fundus of stomach
+          - Body of stomach
+          - Gastric antrum
+          - Pylorus
+          - Lesser curvature of stomach, NOS
+          - Greater curvature of stomach, NOS
+          - Overlapping lesion of stomach
+          - Stomach, NOS
+          - Duodenum
+          - Jejunum
+          - Ileum
+          - Meckel diverticulum
+          - Overlapping lesion of small intestine
+          - Small intestine, NOS
+          - Cecum
+          - Appendix
+          - Ascending colon
+          - Hepatic flexure of colon
+          - Transverse colon
+          - Splenic flexure of colon
+          - Descending colon
+          - Sigmoid colon
+          - Overlapping lesion of colon
+          - Colon, NOS
+          - Rectosigmoid junction
+          - Rectum, NOS
+          - Anus, NOS
+          - Anal canal
+          - Cloacogenic zone
+          - Overlapping lesion of rectum, anus and anal canal
+          - Liver
+          - Intrahepatic bile duct
+          - Gallbladder
+          - Extrahepatic bile duct
+          - Ampulla of Vater
+          - Overlapping lesion of billiary tract
+          - Billiary tract, NOS
+          - Head of pancreas
+          - Body of pancreas
+          - Tail of pancreas
+          - Pancreatic duct
+          - Islets of Langerhans
+          - Other specified parts of pancreas
+          - Overlapping lesion of pancreas
+          - Pancreas, NOS
+          - Intestinal tract, NOS
+          - Overlapping lesion of digestive system
+          - Gastrointestinal tract, NOS
+          - Nasal cavity
+          - Middle ear
+          - Maxillary sinus
+          - Ethmoid sinus
+          - Frontal sinus
+          - Sphenoid sinus
+          - Overlapping lesion of accessory sinuses
+          - Accessory sinus, NOS
+          - Glottis
+          - Supraglottis
+          - Subglottis
+          - Laryngeal cartilage
+          - Overlapping lesion of larynx
+          - Larynx, NOS
+          - Trachea
+          - Main bronchus
+          - Upper lobe, lung
+          - Middle lobe, lung
+          - Lower lobe, lung
+          - Overlapping lesion of lung
+          - Lung, NOS
+          - Thymus
+          - Heart
+          - Anterior mediastinum
+          - Posterior mediastinum
+          - Mediastinum, NOS
+          - Pleura, NOS
+          - Overlapping lesion of heart, mediastinum and pleura
+          - Upper respiratory tract, NOS
+          - Overlapping lesion of respiratory system and intrathoracic organs
+          - Ill-defined sites within respiratory system
+          - Long bones of upper limb, scapula and associated joints
+          - Short bones of upper limb and associated joints
+          - Long bones of lower limb and associated joints
+          - Short bones of lower limb and associated joints
+          - Overlapping lesion of bones, joints and articular cartilage of limbs
+          - Bone of limb, NOS
+          - Bones of skull and face and associated joints
+          - Mandible
+          - Vertebral column
+          - Rib, sternum, clavicle and associated joints
+          - Pelvic bones, sacrum, coccyx and associated joints
+          - Overlapping lesion of bones, joints and articular cartilage
+          - Bone, NOS
+          - Blood
+          - Bone marrow
+          - Spleen
+          - Reticuloendothelial system, NOS
+          - Hematopoietic system, NOS
+          - Skin of lip, NOS
+          - Eyelid
+          - External ear
+          - Skin of other and unspecified parts of face
+          - Skin of scalp and neck
+          - Skin of trunk
+          - Skin of upper limb and shoulder
+          - Skin of lower limb and hip
+          - Overlapping lesion of skin
+          - Skin, NOS
+          - Peripheral nerves and autonomic nervous system of head, face, and neck
+          - Peripheral nerves and autonomic nervous system of upper limb and shoulder
+          - Peripheral nerves and autonomic nervous system of lower limb and hip
+          - Peripheral nerves and autonomic nervous system of thorax
+          - Peripheral nerves and autonomic nervous system of abdomen
+          - Peripheral nerves and autonomic nervous system of pelvis
+          - Peripheral nerves and autonomic nervous system of trunk, NOS
+          - Overlapping lesion of peripheral nerves and autonomic nervous system
+          - Autonomic nervous system, NOS
+          - Retroperitoneum
+          - Specified parts of peritoneum
+          - Peritoneum, NOS
+          - Overlapping lesion of retroperitoneum and peritoneum
+          - Connective, Subcutaneous and other soft tissues of head, face, and neck
+          - Connective, Subcutaneous and other soft tissues of upper limb and shoulder
+          - Connective, Subcutaneous and other soft tissues of lower limb and hip
+          - Connective, Subcutaneous and other soft tissues of thorax
+          - Connective, Subcutaneous and other soft tissues of abdomen
+          - Connective, Subcutaneous and other soft tissues of pelvis
+          - Connective, Subcutaneous and other soft tissues of trunk, NOS
+          - Overlapping lesion of connective, subcutaneous and other soft tissues
+          - Connective, Subcutaneous and other soft tissues, NOS
+          - Nipple
+          - Central portion of breast
+          - Upper-inner quadrant of breast
+          - Lower-inner quadrant of breast
+          - Upper-outer quadrant of breast
+          - Lower-outer quadrant of breast
+          - Axillary tail of breast
+          - Overlapping lesion of breast
+          - Breast, NOS
+          - Labium majus
+          - Labium minus
+          - Clitorus
+          - Overlapping lesion of vulva
+          - Vulva, NOS
+          - Vagina, NOS
+          - Endocervix
+          - Exocervix
+          - Overlapping lesion of cervix uteri
+          - Cervix uteri
+          - Isthmus uteri
+          - Endometrium
+          - Myometrium
+          - Fundus uteri
+          - Overlapping lesion of corpus uteri
+          - Corpus uteri
+          - Uterus, NOS
+          - Ovary
+          - Fallopian tube
+          - Broad ligament
+          - Round ligament
+          - Parametrium
+          - Uterine adnexa
+          - Other specified parts of female genital organs
+          - Overlapping lesion of female genital organs
+          - Female genital tract, NOS
+          - Placenta
+          - Prepuce
+          - Glans penis
+          - Body of penis
+          - Overlapping lesion of penis
+          - Penis, NOS
+          - Prostate gland
+          - Undescended testis
+          - Descended testis
+          - Testis, NOS
+          - Epididymis
+          - Spermatic cord
+          - CScrotum, NOS
+          - Other specified parts of male genital organs
+          - Overlapping lesion of male genital organs
+          - Male genital organs, NOS
+          - Kidney, NOS
+          - Renal pelvis
+          - Ureter
+          - Trigone of bladder
+          - Dome of bladder
+          - Lateral wall of bladder
+          - Anterior wall of bladder
+          - Posterior wall of bladder
+          - Bladder neck
+          - Ureteric orifice
+          - Urachus
+          - Overlapping lesion of bladder
+          - Bladder, NOS
+          - Urethra
+          - Paraurethral gland
+          - Overlapping lesion of urinary organs
+          - Urinary system, NOS
+          - Conjunctiva
+          - Cornea, NOS
+          - Retina
+          - Choroid
+          - Ciliary body
+          - Lacrimal gland
+          - Orbit, NOS
+          - Overlapping lesion of eye and adnexa
+          - Eye, NOS
+          - Cerebral meninges
+          - Spinal meninges
+          - Meninges, NOS
+          - Cerebrum
+          - Frontal lobe
+          - Temporal lobe
+          - Parietal lobe
+          - Occipital lobe
+          - Ventricle, NOS
+          - Cerebellum, NOS
+          - Brain stem
+          - Overlapping lesion of brain
+          - Brain, NOS
+          - Spinal cord
+          - Cauda equina
+          - Olfactory nerve
+          - Optic nerve
+          - Acoustic nerve
+          - Cranial nerve, NOS
+          - Overlapping lesion of brain and central nervous system
+          - Nervous system, NOS
+          - Thyroid gland
+          - Cortex of adrenal gland
+          - Medulla of adrenal gland
+          - Adrenal gland, NOS
+          - Parathyroid gland
+          - Pituitary gland
+          - Craniopharyngeal duct
+          - Pineal gland
+          - Carotid body
+          - Aortic body and other paraganglia
+          - Overlapping lesion of endocrine glands and related structures
+          - Endocrine gland, NOS
+          - Head, face or neck, NOS
+          - Thorax, NOS
+          - Abdomen, NOS
+          - Pelvis, NOS
+          - Upper limb, NOS
+          - Lower limb, NOS
+          - Other ill-defined sites
+          - Overlapping lesion of ill-defined sites
+          - Lymph nodes of head, face and neck
+          - Intrathoracic lymph nodes
+          - Intra-abdominal lymph nodes
+          - Lymph nodes of axilla or arm
+          - Lymph nodes of inguinal region or leg
+          - Pelvic lymph nodes
+          - Lymph nodes of multiple regions
+          - Lymph node, NOS
+          - Unknown primary site
+      - $ref: "_definitions.yaml#/missing_fields"
+  taken_during:
+    $ref: "_definitions.yaml#/to_one"
+  derived_from:
+    $ref: "_definitions.yaml#/to_many"

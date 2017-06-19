@@ -70,10 +70,10 @@ def validate_schemata(schemata, metaschema):
                 "Entity '{}' has '{}' as a link but not property".format(
                     s['id'], link)
 
-        for link in [l['name'] for l in s['links'] if 'name' in l]:
+        for link in [l['label'] for l in s['links'] if 'label' in l]:
             assert_link_is_also_prop(link)
-        for subgroup in [l['subgroup'] for l in s['links'] if 'name' not in l]:
-            for link in [l['name'] for l in subgroup if 'name' in l]:
+        for subgroup in [l['subgroup'] for l in s['links'] if 'label' not in l]:
+            for link in [l['label'] for l in subgroup if 'label' in l]:
                 assert_link_is_also_prop(link)
 
 

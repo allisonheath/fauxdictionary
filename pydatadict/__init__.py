@@ -80,7 +80,7 @@ class DataDictionary(object):
             self.load_directory(self.root_dir)
 
     def load_directory(self, directory):
-        """Load and reslove all schemas from directory"""
+        """Load and resolve all schemas from directory"""
 
         yamls, resolvers = load_schemas_from_dir(directory)
 
@@ -133,8 +133,10 @@ class DataDictionary(object):
         refkey = '$ref'
 
         if isinstance(obj, dict):
-            if refkey in obj:
-                val = obj.pop(refkey)
+            all_refkeys = [k for k in obj.keys() if k.startswith(refkey)]
+            #if refkey in obj:
+            for key in all_refkeys:
+                val = obj.pop(key)
                 obj.update(self.resolve_reference(val, root))
             return {k: self.resolve_schema(v, root) for k, v in obj.items()}
         elif isinstance(obj, list):
